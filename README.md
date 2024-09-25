@@ -7,15 +7,15 @@ Below is the architecture we will be implementing.
 
 <img width="938" alt="image" src="https://github.com/user-attachments/assets/8891a9fa-a46c-4146-8045-738e751a0c81">
 
-In this blog, we will:
+In this blog, we will use the Kaggle's Reviews Dataset and we will:
 
-### Send Kaggle's Reviews Dataset to Pub/Sub:
-We'll publish the dataset to Pub/Sub, setting the subscription's delivery type property to "write to BigQuery." This configuration allows Pub/Sub to stream the data directly into our target BigQuery table without the need for an ETL pipeline.
+> **1- Send Kaggle's Reviews Dataset to Pub/Sub.**
+We'll send the reviews data to Pub/Sub. in the Pub/Sub topic, we will set the subscription's delivery type property to "write to BigQuery." This configuration allows Pub/Sub to stream the data directly into our target BigQuery table without the need for an ETL pipeline.
 
-### Leverage Continuous Queries for Real-Time Sentiment Analysis:
+> **2- Leverage Continuous Queries for Real-Time Sentiment Analysis.**
 We'll utilize Continuous Queries in BigQuery to call a remote Vertex AI model in BQML to perform sentiment analysis on the incoming data.
 
-### Deliver Results for Actionable Insights:
+> **3- Deliver Results for Actionable Insights.**
 The sentiment analysis results will be written to both a BigQuery table and a separate Pub/Sub topic, enabling real-time consumption by operational applications and allowing end-users to take immediate action.
 
 # Project Setup
