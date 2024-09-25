@@ -13,6 +13,7 @@ Below is the architecture we will be implementing.
 ## Prerequisites
 ### Project Whitelisting:    
 During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
+As of this writing, Continuous Queries is in preview.  Submit a request form https://docs.google.com/forms/d/e/1FAIpQLSc-SL89C9K997jSm_u3oQH-UGGe3brzsybbX6mf5VFaA0a4iA/viewform to have your project whitelisted for access.
 
 ### Create a Reservation:
 Continuous Queries are only supported in certain BigQuery editions. You'll need to create a reservation with the following configuration:
