@@ -38,7 +38,34 @@ Enter the dataset id, select your region and hit the create dataset button.
 <img width="350" alt="image" src="https://github.com/user-attachments/assets/1f701179-0663-49ca-8333-fe8ae702ee1e">
 
 - use the below script to create the target table
-- 
+  CREATE TABLE `<your project id>.<your dataset>.HotelReviewsCQ`
+(
+  id STRING,
+  dateAdded TIMESTAMP,
+  dateUpdated TIMESTAMP,
+  address STRING,
+  categories STRING,
+  primaryCategories STRING,
+  city STRING,
+  country STRING,
+  keys STRING,
+  latitude FLOAT64,
+  longitude FLOAT64,
+  name STRING,
+  postalCode STRING,
+  province STRING,
+  reviews_date STRING,
+  reviews_dateSeen STRING,
+  reviews_rating FLOAT64,
+  reviews_sourceURLs STRING,
+  reviews_text STRING,
+  reviews_title STRING,
+  reviews_userCity STRING,
+  reviews_userProvince STRING,
+  reviews_username STRING,
+  sourceURLs STRING,
+  websites STRING
+);
 ### Streaming data to Pub/Sub
 We'll use Kaggle's reviews dataset https://www.kaggle.com/datasets/ahmedabdulhamid/reviews-dataset. 
 There are multiple ways to stream data from a bigQuery table to PubSub. For the purpose of the demo and as we are talking about Continuous Queries, we'll use that feature to push the data in Pub/Sub
