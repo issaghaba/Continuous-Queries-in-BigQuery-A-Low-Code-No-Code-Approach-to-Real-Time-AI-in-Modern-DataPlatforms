@@ -21,9 +21,11 @@ In this blog, we will work with Kaggle's Reviews Dataset and carry out the follo
 
 ## Prerequisites
 ### Vertex AI 
- - Enable the Vertex AI API
- - Grant the Vertex AI user role to the external connection service accountid. To find the service account Id, click on the external connection you created previously, under external connections
- <img width="810" alt="image" src="https://github.com/user-attachments/assets/62d23156-b7bb-40dd-b2b0-1ad40ffebac0">
+1. Activate Vertex AI : Make sure the Vertex AI API is enabled in your Google Cloud project.
+2. Grant the "Vertex AI User" role to this service account. To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
+
+<img width="810" alt="image" src="https://github.com/user-attachments/assets/db29271a-1775-41f3-9af1-4272729fdce4">
+
 
 ### Project Whitelisting:    
 During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
