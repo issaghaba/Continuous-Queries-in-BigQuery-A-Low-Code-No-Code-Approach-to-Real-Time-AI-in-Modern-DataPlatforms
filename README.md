@@ -7,24 +7,24 @@ Below is the architecture we will be implementing.
 
 <img width="938" alt="image" src="https://github.com/user-attachments/assets/8891a9fa-a46c-4146-8045-738e751a0c81">
 
-In this blog, we will use the Kaggle's Reviews Dataset and we will:
+In this blog, we will work with Kaggle's Reviews Dataset and carry out the following:
 
-> **1- Send Kaggle's Reviews Dataset to Pub/Sub.**
-We'll send the reviews data to Pub/Sub. in the Pub/Sub topic, we will set the subscription's delivery type property to "write to BigQuery." This configuration allows Pub/Sub to stream the data directly into our target BigQuery table without the need for an ETL pipeline.
+> **1- Stream the Dataset to Pub/Sub:** We'll send the reviews data to Pub/Sub and configure the subscription's delivery type to "write to BigQuery." This setup enables Pub/Sub to stream the data directly into our target BigQuery table, eliminating the need for a traditional ETL pipeline.
 
-> **2- Leverage Continuous Queries for Real-Time Sentiment Analysis.**
-We'll utilize Continuous Queries in BigQuery to call a remote Vertex AI model in BQML to perform sentiment analysis on the incoming data.
+> **2- Perform Real-Time Sentiment Analysis Using Continuous Queries:** We'll leverage Continuous Queries in BigQuery to invoke a remote Vertex AI model through BQML for sentiment analysis on the incoming data.
 
-> **3- Deliver Results for Actionable Insights.**
-The sentiment analysis results will be written to both a BigQuery table and a separate Pub/Sub topic, enabling real-time consumption by operational applications and allowing end-users to take immediate action.
+> **3- Provide Actionable Insights in Real Time:** The sentiment analysis results will be written to both a BigQuery table and a separate Pub/Sub topic, allowing real-time consumption by operational applications and empowering end-users to take immediate action.
+
+
 
 # Project Setup
 
 ## Prerequisites
 ### Vertex AI 
- Enable the Vertex AI API
- Grant the Vertex AI user role to the external connection service account
- 
+ - Enable the Vertex AI API
+ - Grant the Vertex AI user role to the external connection service accountid. To find the service account Id, click on the external connection you created previously, under external connections
+ <img width="810" alt="image" src="https://github.com/user-attachments/assets/62d23156-b7bb-40dd-b2b0-1ad40ffebac0">
+
 ### Project Whitelisting:    
 During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
 As of this writing, Continuous Queries is in preview.  Submit a request form https://docs.google.com/forms/d/e/1FAIpQLSc-SL89C9K997jSm_u3oQH-UGGe3brzsybbX6mf5VFaA0a4iA/viewform to have your project whitelisted for access.
