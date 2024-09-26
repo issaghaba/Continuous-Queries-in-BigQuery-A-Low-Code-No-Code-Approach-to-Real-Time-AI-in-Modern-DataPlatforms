@@ -20,6 +20,11 @@ In this blog, we will work with Kaggle's Reviews Dataset and carry out the follo
 # Project Setup
 
 ## Prerequisites
+
+### Project Whitelisting:    
+During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
+As of this writing, Continuous Queries is in preview.  Submit a request form https://docs.google.com/forms/d/e/1FAIpQLSc-SL89C9K997jSm_u3oQH-UGGe3brzsybbX6mf5VFaA0a4iA/viewform to have your project whitelisted for access.
+
 ### Vertex AI 
 1. Activate Vertex AI : Make sure the Vertex AI API is enabled in your Google Cloud project.
 2. Grant the "Vertex AI User" role to this service account. To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
@@ -27,11 +32,8 @@ In this blog, we will work with Kaggle's Reviews Dataset and carry out the follo
 <img width="810" alt="image" src="https://github.com/user-attachments/assets/db29271a-1775-41f3-9af1-4272729fdce4">
 
 
-### Project Whitelisting:    
-During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
-As of this writing, Continuous Queries is in preview.  Submit a request form https://docs.google.com/forms/d/e/1FAIpQLSc-SL89C9K997jSm_u3oQH-UGGe3brzsybbX6mf5VFaA0a4iA/viewform to have your project whitelisted for access.
-
-### Create a BigQuery Dataset and Table:
+### BigQuery
+1. Create a dataset and a table 
 Set up a BigQuery dataset and table to store the data for real-time analysis.
 - To create a dataset, expand the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">
  and select create dataset.
@@ -45,6 +47,7 @@ Enter the dataset id, select your region and hit the create dataset button.
 
 - use the below script to create the target table
 ```sql
+
 CREATE TABLE `<your project id>.<your dataset>.HotelReviewsCQ`
 (
   id STRING,
@@ -76,8 +79,20 @@ CREATE TABLE `<your project id>.<your dataset>.HotelReviewsCQ`
 
 ```
 
+
+2. Create a Reservation:
+Continuous Queries are only supported in certain BigQuery editions.
+To create a reservation in BQ, select Capacity Management under Administration
+<img width="207" alt="image" src="https://github.com/user-attachments/assets/450aef10-4f12-4e77-be43-48f4d410a8f2">
+Click create a reservation.
+<img width="457" alt="image" src="https://github.com/user-attachments/assets/04de0088-9f4f-40da-bfd6-2c4dc132cf84">
+Select the size that matches your workload. Ensure that the baseline slot count is equal to the max slots to disable auto-scaling as it is not support
+
+
+
+### Pub/Sub
+
 ### Streaming data to Pub/Sub
-#### Create a Pub/Sub topic and subscription
 
 We'll use Kaggle's reviews dataset https://www.kaggle.com/datasets/ahmedabdulhamid/reviews-dataset. 
 There are multiple ways to stream data from a bigQuery table to PubSub. For the purpose of the demo and as we are talking about Continuous Queries, we'll use that feature to push the data in Pub/Sub
@@ -94,10 +109,6 @@ File out the form and click the create table button.
 
 
 
-
-### Create a Reservation:
-Continuous Queries are only supported in certain BigQuery editions. You'll need to create a reservation with auto scaling disabled. To disable auto-scaling, ensure that the baseline slot count is equal to the max slots to disable auto-scaling.
-To create a reservation, in BQ`
 
 ### Service Account Setup:
 You'll need a service account to run the job. Follow this guide to choose the appropriate account type.
