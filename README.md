@@ -27,7 +27,7 @@ As of this writing, Continuous Queries is in preview.  Submit a request form htt
 
 ### Create a BigQuery Dataset and Table:
 Set up a BigQuery dataset and table to store the data for real-time analysis.
-To create a dataset, expand the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">
+- To create a dataset, expand the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">
  and select create dataset.
 
 <img width="432" alt="image" src="https://github.com/user-attachments/assets/66f3153e-4793-46fd-8d7f-6986d41a5929">
@@ -37,7 +37,8 @@ Enter the dataset id, select your region and hit the create dataset button.
 
 <img width="350" alt="image" src="https://github.com/user-attachments/assets/1f701179-0663-49ca-8333-fe8ae702ee1e">
 
-
+- use the below script to create the target table
+- 
 ### Streaming data to Pub/Sub
 We'll use Kaggle's reviews dataset https://www.kaggle.com/datasets/ahmedabdulhamid/reviews-dataset. 
 There are multiple ways to stream data from a bigQuery table to PubSub. For the purpose of the demo and as we are talking about Continuous Queries, we'll use that feature to push the data in Pub/Sub
