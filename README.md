@@ -33,7 +33,7 @@ As of this writing, Continuous Queries is in preview.  Submit a request form htt
 
 
 ### BigQuery
-1. Create a dataset and a table 
+> **1. Create a dataset and a table** 
 Set up a BigQuery dataset and table to store the data for real-time analysis.
 - To create a dataset, expand the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">
  and select create dataset.
@@ -79,18 +79,43 @@ CREATE TABLE `<your project id>.<your dataset>.HotelReviewsCQ`
 
 ```
 
+> **2. Create a remote model for Gemini 1.0 Pro in BigQuery ML**
+```sql
+CREATE OR REPLACE MODEL  `realtimeai.MarketingDW.sentimentanalysis`
+REMOTE WITH CONNECTION `us-east1.realtimeaiConn`
+OPTIONS (endpoint = 'gemini-pro-vision')
+```
 
-2. Create a Reservation:
+
+> **3. Create a Reservation:**
 Continuous Queries are only supported in certain BigQuery editions.
-To create a reservation in BQ, select Capacity Management under Administration
-<img width="207" alt="image" src="https://github.com/user-attachments/assets/450aef10-4f12-4e77-be43-48f4d410a8f2">
-Click create a reservation.
-<img width="457" alt="image" src="https://github.com/user-attachments/assets/04de0088-9f4f-40da-bfd6-2c4dc132cf84">
-Select the size that matches your workload. Ensure that the baseline slot count is equal to the max slots to disable auto-scaling as it is not support
 
+
+To create a reservation in BQ, select Capacity Management under Administration
+
+<img width="207" alt="image" src="https://github.com/user-attachments/assets/450aef10-4f12-4e77-be43-48f4d410a8f2">
+
+
+Click create a reservation.
+
+<img width="457" alt="image" src="https://github.com/user-attachments/assets/04de0088-9f4f-40da-bfd6-2c4dc132cf84">
+
+Select the size that matches your workload. Ensure that the baseline slot count is equal to the max slots to disable auto-scaling as it is not supported.
+
+<img width="253" alt="image" src="https://github.com/user-attachments/assets/97428ae1-2b8e-45d5-8e9f-3a7b5a62232b">
+
+
+Click on the reservation you just created and select assignments. Create an assignment, specify your project and select  "Continuous" as Job type.
+
+<img width="543" alt="image" src="https://github.com/user-attachments/assets/f6175ee7-6210-4f0e-8324-5d35672ac08a">
+
+
+<img width="646" alt="image" src="https://github.com/user-attachments/assets/2c19d4af-ccf7-4028-acc5-1a63e6c0f922">
 
 
 ### Pub/Sub
+Go to Pub/Sub and create a topic. While creating a topic, you can check the create a default subscription box.
+
 
 ### Streaming data to Pub/Sub
 
@@ -113,11 +138,6 @@ File out the form and click the create table button.
 ### Service Account Setup:
 You'll need a service account to run the job. Follow this guide to choose the appropriate account type.
 
-### Create a remote model for Gemini 1.0 Pro in BigQuery ML
-```SQL
-CREATE OR REPLACE MODEL  `realtimeai.MarketingDW.sentimentanalysis`
-REMOTE WITH CONNECTION `us-east1.realtimeaiConn`
-OPTIONS (endpoint = 'gemini-pro-vision') ```
 
 
 
