@@ -115,19 +115,22 @@ Click on the reservation you just created and select assignments. Create an assi
 
 ### Pub/Sub
 Go to Pub/Sub and create a topic. While creating a topic, you can check the create a default subscription box.
+<img width="379" alt="image" src="https://github.com/user-attachments/assets/60d992dc-bfbe-49d3-b2ca-0f98f9696a73">
 
+
+Now that the setup is complete, we are going to start the data into pubsub.
 
 ### Streaming data to Pub/Sub
 
 We'll use Kaggle's reviews dataset https://www.kaggle.com/datasets/ahmedabdulhamid/reviews-dataset. 
-There are multiple ways to stream data from a bigQuery table to PubSub. For the purpose of the demo and as we are talking about Continuous Queries, we'll use that feature to push the data in Pub/Sub
+There are multiple ways to stream data from a bigQuery table to PubSub. For the purpose of the demo and as we are talking about Continuous Queries, we'll use that feature to push the data in Pub/Sub.
 After you download the dataset, you can upload it to a Cloud Storage Account.
 Using the console, you can create a BigQuery table by importing the csv file.
 To do so,  expand the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">
  and select create table.
  <img width="300" alt="image" src="https://github.com/user-attachments/assets/6ffbb922-e2af-4d82-b5f4-14900f51a126">
 
-File out the form and click the create table button.
+Fill out the form and click the create table button.
 
 <img width="244" alt="image" src="https://github.com/user-attachments/assets/1097b9ab-c278-4ef7-9611-f2cb10de1c5a">
 
