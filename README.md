@@ -11,7 +11,7 @@ In this blog, we will work with Kaggle's Reviews Dataset and carry out the follo
 
 > **1- Stream the Dataset to Pub/Sub:** We'll send the reviews data to Pub/Sub and configure the subscription's delivery type to "write to BigQuery." This setup enables Pub/Sub to stream the data directly into our target BigQuery table, eliminating the need for a traditional ETL pipeline.
 
-> **2- Perform Real-Time Sentiment Analysis Using Continuous Queries:** We'll leverage Continuous Queries in BigQuery to invoke a remote Vertex AI model through BQML for sentiment analysis on the incoming data.
+> **2- Perform Real-Time Sentiment Analysis using Continuous Queries:** We'll leverage Continuous Queries in BigQuery to invoke a remote Vertex AI model through BQML for sentiment analysis on the incoming data.
 
 > **3- Provide Actionable Insights in Real Time:** The sentiment analysis results will be written to both a BigQuery table and a separate Pub/Sub topic, allowing real-time consumption by operational applications and empowering end-users to take immediate action.
 
@@ -20,9 +20,15 @@ In this blog, we will work with Kaggle's Reviews Dataset and carry out the follo
 # Project Setup
 
 ## Prerequisites
-<img width="888" alt="image" src="https://github.com/user-attachments/assets/6913616b-ad23-46c8-aa0c-f18eb31d53af">
+### Permissions
+In this tutorial, we will utilize a service account to execute the continuous queries.
+* The service account must have the necessary permissions to create a job. The roles that grant job creation permissions include BigQuery User, BigQuery Job User, and BigQuery Admin.
+* For exporting data from BigQuery, the service account requires table export permissions, which are available through the BQ Data Viewer, Data Editor, Data Owner, and BQ Admin roles.
+* Lastly, to submit a job using the service account, the user must have the Service Account User role.
 
-### Project Whitelisting:    
+More details available here
+
+### Project Whitelisting   
 During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
 As of this writing, Continuous Queries is in preview.  Submit a request form https://docs.google.com/forms/d/e/1FAIpQLSc-SL89C9K997jSm_u3oQH-UGGe3brzsybbX6mf5VFaA0a4iA/viewform to have your project whitelisted for access.
 
