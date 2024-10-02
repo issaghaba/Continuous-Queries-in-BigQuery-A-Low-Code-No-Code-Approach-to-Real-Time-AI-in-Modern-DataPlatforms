@@ -31,13 +31,13 @@ As of this writing, Continuous Queries is in preview.  Submit a [request form](h
 
 
 ### **Vertex AI** 
-1. Activate Vertex AI : Make sure the Vertex AI API is enabled in your Google Cloud project.
-2. Create an external connection: The external connection will be use to create the remote Vertex Ai model. 
+**1. Activate Vertex AI:** Make sure the Vertex AI API is enabled in your Google Cloud project.
+**2. Create an external connection:** The external connection will be use to create the remote Vertex Ai model. 
 To create an external connection,in BigQuery Studio, next to the Explorer panel, click on Add.
+
 <img width="294" alt="image" src="https://github.com/user-attachments/assets/8a8090ed-5551-4a56-8f2f-59e5dc96d714">
 
-
-In the new window, select Connection to external data sources as the source.
+<br/>In the new window, select Connection to external data sources as the source.
 
 <img width="967" alt="image" src="https://github.com/user-attachments/assets/516cd433-cb72-4b61-bfd2-a3650c1411df">
 
@@ -48,11 +48,11 @@ Finally, click on the Create Connection button.
 <img width="309" alt="image" src="https://github.com/user-attachments/assets/fa00aca0-eef6-441d-879b-1761220d2a4c">
 
 
-4. Grant the "Vertex AI User" role to this service account. To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
+**3. Grant the "Vertex AI User" role to this service account:** To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
 
    <img width="788" alt="image" src="https://github.com/user-attachments/assets/bd8541f7-2651-4a9b-a053-49ac8d38ad85">
    
-5. Create a remote model for Gemini 1.0 Pro in BigQuery ML
+**4. Create a remote model for Gemini 1.0 Pro in BigQuery ML**
 
 ```sql
 
@@ -62,11 +62,7 @@ OPTIONS (endpoint ='gemini-1.0-pro')
 
 ```
 ### **BigQuery**
-**Create a dataset and a table**
-
-To create a BigQuery dataset and table for real-time analysis:
-
-Begin by expanding the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">.
+**1. Create a dataset and a table:** To create a BigQuery dataset and table for real-time analysis, begin by expanding the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">.
 Click on Create Dataset from the options to start configuring your new dataset.
 
 <img width="432" alt="image" src="https://github.com/user-attachments/assets/2cc77de1-9551-4087-be3c-5d050c9b0782">
@@ -112,9 +108,7 @@ CREATE TABLE `<your project id>.<your dataset>.HotelReviewsCQ`
 ```
 
 
-
-
-> **3. Create a Reservation:**
+**3. Create a Reservation:**
 Continuous Queries are only supported in certain BigQuery editions. Make sure you create the reservation in the same region as your BQ dataset.
 
 
@@ -140,7 +134,7 @@ Click on the reservation you just created and select assignments. Create an assi
 <img width="646" alt="image" src="https://github.com/user-attachments/assets/2c19d4af-ccf7-4028-acc5-1a63e6c0f922">
 
 
-### Pub/Sub
+### **Pub/Sub**
 Go to Pub/Sub and create a topic. While creating a topic, you can check the create a default subscription box.
 <img width="379" alt="image" src="https://github.com/user-attachments/assets/60d992dc-bfbe-49d3-b2ca-0f98f9696a73">
 
