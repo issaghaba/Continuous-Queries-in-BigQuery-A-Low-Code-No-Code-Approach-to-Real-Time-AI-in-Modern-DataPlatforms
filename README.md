@@ -32,16 +32,16 @@ As of this writing, Continuous Queries is in preview.  Submit a [request form](h
 
 ### **Vertex AI** 
 1. Activate Vertex AI : Make sure the Vertex AI API is enabled in your Google Cloud project.
-2. Create an external connectionn : The external connection will be use to create the remote Vertex Ai model.
-To create an external connection, next to Explorer in BigQuery Studio, select Add.
+2. Create an external connection: The external connection will be use to create the remote Vertex Ai model. 
+To create an external connection,in BigQuery Studio, next to the Explorer panel, click on Add.
 <img width="294" alt="image" src="https://github.com/user-attachments/assets/8a8090ed-5551-4a56-8f2f-59e5dc96d714">
-On the new window, select Connection to external data sources as source
+In the new window, select Connection to external data sources as the source.
 <img width="967" alt="image" src="https://github.com/user-attachments/assets/516cd433-cb72-4b61-bfd2-a3650c1411df">
-In the configuration window,select "Vertex AI remote models, remote functions and BigLake(Cloud Resource".
-Enter a connection id and choose a location. The location must be the same as your BigQuery dataset location. Hit the create connection button.
+In the configuration window, choose Vertex AI remote models, remote functions, and BigLake (Cloud Resource).
+Enter a connection ID and select the location, ensuring it matches the location of your BigQuery dataset.
+Finally, click on the Create Connection button.
+
 <img width="306" alt="image" src="https://github.com/user-attachments/assets/035154ff-df24-463c-97a1-a3e66446d1f5">
-
-
 
 4. Grant the "Vertex AI User" role to this service account. To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
 
