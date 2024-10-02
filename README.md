@@ -61,13 +61,13 @@ To create a BigQuery dataset and table for real-time analysis:
 Begin by expanding the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">.
 Click on Create Dataset from the options to start configuring your new dataset.
 
-<img width="310" alt="image" src="https://github.com/user-attachments/assets/7d77ec7d-90f4-477f-9a00-ef5506ec99e3">
-
+<img width="432" alt="image" src="https://github.com/user-attachments/assets/2cc77de1-9551-4087-be3c-5d050c9b0782">
 
 
 Enter the dataset id, select your region and hit the create dataset button.
 
-<img width="350" alt="image" src="https://github.com/user-attachments/assets/1f701179-0663-49ca-8333-fe8ae702ee1e">
+<img width="310" alt="image" src="https://github.com/user-attachments/assets/7d77ec7d-90f4-477f-9a00-ef5506ec99e3">
+
 
 - use the below script to create the target table
 ```sql
