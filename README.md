@@ -35,8 +35,11 @@ As of this writing, Continuous Queries is in preview.  Submit a [request form](h
 2. Create an external connection: The external connection will be use to create the remote Vertex Ai model. 
 To create an external connection,in BigQuery Studio, next to the Explorer panel, click on Add.
 <img width="294" alt="image" src="https://github.com/user-attachments/assets/8a8090ed-5551-4a56-8f2f-59e5dc96d714">
+
 In the new window, select Connection to external data sources as the source.
+
 <img width="967" alt="image" src="https://github.com/user-attachments/assets/516cd433-cb72-4b61-bfd2-a3650c1411df">
+
 In the configuration window, choose Vertex AI remote models, remote functions, and BigLake (Cloud Resource).
 Enter a connection ID and select the location, ensuring it matches the location of your BigQuery dataset.
 Finally, click on the Create Connection button.
