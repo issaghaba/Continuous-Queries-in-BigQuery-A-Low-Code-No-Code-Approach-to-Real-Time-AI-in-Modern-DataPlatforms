@@ -22,15 +22,14 @@ In this blog, we will work with Kaggle's Reviews Dataset and carry out the follo
 ## Prerequisites
 ### Permissions
 In this tutorial, we will utilize a service account to execute the continuous queries.
-* The service account must have the necessary permissions to create a job. The roles that grant job creation permissions include BigQuery User, BigQuery Job User, and BigQuery Admin.
-* For exporting data from BigQuery, the service account requires table export permissions, which are available through the BQ Data Viewer, Data Editor, Data Owner, and BQ Admin roles.
+* The service account must have the necessary permissions to create a job. The roles that grant job creation permissions are BigQuery User, BigQuery Job User, and BigQuery Admin.
+* To export data from a BigQuery table, the service account requires table export permission, which is available through the BQ Data Viewer, Data Editor, Data Owner, and BQ Admin roles.
 * Lastly, to submit a job using the service account, the user must have the Service Account User role.
-
-More details available here
 
 ### Project Whitelisting   
 During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
-As of this writing, Continuous Queries is in preview.  Submit a request form https://docs.google.com/forms/d/e/1FAIpQLSc-SL89C9K997jSm_u3oQH-UGGe3brzsybbX6mf5VFaA0a4iA/viewform to have your project whitelisted for access.
+As of this writing, Continuous Queries is in preview.  Submit a [request form](https://docs.google.com/forms/d/e/1FAIpQLSc-SL89C9K997jSm_u3oQH-UGGe3brzsybbX6mf5VFaA0a4iA/viewform).
+
 
 ### Vertex AI 
 1. Activate Vertex AI : Make sure the Vertex AI API is enabled in your Google Cloud project.
