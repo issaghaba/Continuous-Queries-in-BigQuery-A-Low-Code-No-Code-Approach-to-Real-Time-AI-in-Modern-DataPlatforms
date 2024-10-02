@@ -17,32 +17,44 @@ In this blog, we will work with Kaggle's Reviews Dataset and carry out the follo
 
 
 
-# Project Setup
+## Project Setup
 
-## Prerequisites
-**Permissions**
+### **Permissions**
 In this tutorial, we will utilize a service account to execute the continuous queries.
 * The service account must have the necessary permissions to create a job. The roles that grant job creation permissions are BigQuery User, BigQuery Job User, and BigQuery Admin.
 * To export data from a BigQuery table, the service account requires table export permission, which is available through the BQ Data Viewer, Data Editor, Data Owner, and BQ Admin roles.
 * Lastly, to submit a job using the service account, the user must have the Service Account User role.
 
-**Project Whitelisting**   
+### **Project Whitelisting**   
 During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
 As of this writing, Continuous Queries is in preview.  Submit a [request form](https://docs.google.com/forms/d/e/1FAIpQLSc-SL89C9K997jSm_u3oQH-UGGe3brzsybbX6mf5VFaA0a4iA/viewform).
 
 
-**Vertex AI** 
+### **Vertex AI** 
 1. Activate Vertex AI : Make sure the Vertex AI API is enabled in your Google Cloud project.
-2. Grant the "Vertex AI User" role to this service account. To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
+2. Create an external connectionn : The external connection will be use to create the remote Vertex Ai model.
+To create an external connection, next to Explorer in BigQuery Studio, select Add.
+<img width="294" alt="image" src="https://github.com/user-attachments/assets/8a8090ed-5551-4a56-8f2f-59e5dc96d714">
+On the new window, select Connection to external data sources as source
+<img width="967" alt="image" src="https://github.com/user-attachments/assets/516cd433-cb72-4b61-bfd2-a3650c1411df">
+In the configuration window,select "Vertex AI remote models, remote functions and BigLake(Cloud Resource".
+Enter a connection id and choose a location. The location must be the same as your BigQuery dataset location. Hit the create connection button.
+<img width="306" alt="image" src="https://github.com/user-attachments/assets/035154ff-df24-463c-97a1-a3e66446d1f5">
+
+
+
+4. Grant the "Vertex AI User" role to this service account. To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
 
 <img width="810" alt="image" src="https://github.com/user-attachments/assets/db29271a-1775-41f3-9af1-4272729fdce4">
 
 
-**BigQuery**
- * Create a dataset and a table
-Set up a BigQuery dataset and table to store the data for real-time analysis.
-- To create a dataset, expand the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">
- and select create dataset.
+### **BigQuery**
+**Create a dataset and a table**
+
+To create a BigQuery dataset and table for real-time analysis:
+
+Begin by expanding the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">.
+Click on Create Dataset from the options to start configuring your new dataset.
 
 <img width="432" alt="image" src="https://github.com/user-attachments/assets/66f3153e-4793-46fd-8d7f-6986d41a5929">
 
