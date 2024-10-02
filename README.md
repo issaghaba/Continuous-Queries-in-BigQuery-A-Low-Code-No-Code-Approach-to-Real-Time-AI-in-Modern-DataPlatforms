@@ -50,7 +50,7 @@ Finally, click on the Create Connection button.
 
 4. Grant the "Vertex AI User" role to this service account. To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
 
-<img width="810" alt="image" src="https://github.com/user-attachments/assets/db29271a-1775-41f3-9af1-4272729fdce4">
+<img width="788" alt="image" src="https://github.com/user-attachments/assets/bd8541f7-2651-4a9b-a053-49ac8d38ad85">
 
 
 ### **BigQuery**
