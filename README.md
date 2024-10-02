@@ -50,9 +50,17 @@ Finally, click on the Create Connection button.
 
 4. Grant the "Vertex AI User" role to this service account. To get the service account id, locate the external connection you set up earlier in the "External Connections" section in your BigQuery settings.
 
-<img width="788" alt="image" src="https://github.com/user-attachments/assets/bd8541f7-2651-4a9b-a053-49ac8d38ad85">
+   <img width="788" alt="image" src="https://github.com/user-attachments/assets/bd8541f7-2651-4a9b-a053-49ac8d38ad85">
+   
+5. Create a remote model for Gemini 1.0 Pro in BigQuery ML
 
+```sql
 
+CREATE OR REPLACE MODEL  `iba-demos-prj.ContinuousQueries.sentimentanalysis`
+REMOTE WITH CONNECTION `us-central1.gemini-1-0-pro`
+OPTIONS (endpoint ='gemini-1.0-pro') 
+
+```
 ### **BigQuery**
 **Create a dataset and a table**
 
@@ -103,12 +111,7 @@ CREATE TABLE `<your project id>.<your dataset>.HotelReviewsCQ`
 
 ```
 
-> **2. Create a remote model for Gemini 1.0 Pro in BigQuery ML**
-```sql
-CREATE OR REPLACE MODEL  `realtimeai.MarketingDW.sentimentanalysis`
-REMOTE WITH CONNECTION `us-east1.realtimeaiConn`
-OPTIONS (endpoint = 'gemini-pro-vision')
-```
+
 
 
 > **3. Create a Reservation:**
