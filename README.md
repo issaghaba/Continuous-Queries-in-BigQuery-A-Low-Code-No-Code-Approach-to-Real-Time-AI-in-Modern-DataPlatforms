@@ -130,7 +130,7 @@ We imported the data into a BigQuery table called HotelReviewsRaw.
 
 
 > **1. Enable the Continuous Query mode**
-In BigQuery Studio, under the "More" option, select Continuous Query.
+Before executing the below query and send the messages to Pub/Sub, you will need to enable COntinuos Query. To do so, in BigQuery Studio, under the "More" option, select Continuous Query.
 
 <img width="331" alt="image" src="https://github.com/user-attachments/assets/a3c4375f-9c5b-4d75-8f8c-56e4da8563fa">
 
@@ -172,12 +172,15 @@ FROM
 ```
 
 
-To run thia query, you will need to specify a service account. To do, go in the query settings under more
+To run this query, you will need to specify a service account. To do, go in the query settings under more
 
 <img width="324" alt="image" src="https://github.com/user-attachments/assets/2c2b350b-786f-4d48-949b-b725c488738b">
 
 Enter a service account that has at least BQ Editor role.
 <img width="316" alt="image" src="https://github.com/user-attachments/assets/eb7546b1-59bd-48b0-82ec-100f15caa2a3">
+
+As the query is running and sending the data in Pub/Sub, you can check that Pub/Sub is automatically streming the data in BigQuery. Note that no ETL job was implemented to load the data in BQ.
+
 
 ### Applying Gen AI on data as it arrives in the BQ table
 
