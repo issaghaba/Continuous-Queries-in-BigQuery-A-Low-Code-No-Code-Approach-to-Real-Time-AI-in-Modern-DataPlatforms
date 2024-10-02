@@ -31,7 +31,7 @@ As of this writing, Continuous Queries is in preview.  Submit a [request form](h
 
 
 ### **Vertex AI** 
-**1. Activate Vertex AI:** Make sure the Vertex AI API is enabled in your Google Cloud project.
+**1. Activate Vertex AI:** Make sure the Vertex AI API is enabled in your Google Cloud project.<br/>
 **2. Create an external connection:** The external connection will be use to create the remote Vertex Ai model. 
 To create an external connection,in BigQuery Studio, next to the Explorer panel, click on Add.
 
