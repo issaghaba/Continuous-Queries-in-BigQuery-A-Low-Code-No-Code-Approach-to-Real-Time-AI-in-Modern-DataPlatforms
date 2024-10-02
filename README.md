@@ -181,8 +181,79 @@ Enter a service account that has at least BQ Editor role.
 
 As the query is running and sending the data in Pub/Sub, you can check that Pub/Sub is automatically streming the data in BigQuery. Note that no ETL job was implemented to load the data in BQ.
 
-
 ### Applying Gen AI on data as it arrives in the BQ table
+
+Now, we can start the query for for the sentiment analysis and leverage Gemini model and our Gen Ai capability.
+Execute the below query in Continuous Query mode to output the analytics in a BQ Query table. Not that you could send this result to a Pub/Sub, Bigtable or AlloyDb for operational systems to take actions based on the insights inreal time.
+
+```sql
+
+insert into `iba-demos-prj.ContinuousQueries.HotelReviewsInsights`
+SELECT
+    address ,
+    categories ,
+    city ,
+    country ,
+    latitude ,
+    longitude ,
+    name ,
+    postalCode ,
+    province ,
+    reviews_date ,
+    reviews_dateAdded ,
+    reviews_doRecommend ,
+    reviews_id ,
+    reviews_rating ,
+    reviews_text ,
+    reviews_title ,
+    reviews_userCity ,
+    reviews_username ,
+    reviews_userProvince ,
+    prompt,
+    ml_generate_text_llm_result
+    
+FROM
+    ML.GENERATE_TEXT(
+      MODEL `iba-demos-prj.ContinuousQueries.sentimentanalysis`,
+      (
+        SELECT
+             address ,
+            categories ,
+            city ,
+            country ,
+            latitude ,
+            longitude ,
+            name ,
+            postalCode ,
+            province ,
+            reviews_date ,
+            reviews_dateAdded ,
+            reviews_doRecommend ,
+            reviews_id ,
+            reviews_rating ,
+            reviews_text ,
+            reviews_title ,
+            reviews_userCity ,
+            reviews_username ,
+            reviews_userProvince  ,
+              CONCAT(
+                'for each of the following reviews, say if it a positive, negative or neutral ', reviews_text
+
+              ) AS prompt
+        FROM   `iba-demos-prj.ContinuousQueries.HotelReviewsCQ` 
+          where city ='Boston'
+
+      ),
+      STRUCT(
+        50 AS max_output_tokens,
+        1.0 AS temperature,
+        40 AS top_k,
+        1.0 AS top_p,
+        TRUE AS flatten_json_output))
+      AS ml_output
+```
+
+
 
 ### Service Account Setup:
 You'll need a service account to run the job. Follow this guide to choose the appropriate account type.
