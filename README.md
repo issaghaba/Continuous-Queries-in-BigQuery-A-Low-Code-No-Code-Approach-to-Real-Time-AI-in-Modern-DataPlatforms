@@ -271,9 +271,14 @@ FROM
 
 
 
-### Service Account Setup:
-You'll need a service account to run the job. Follow this guide to choose the appropriate account type.
+### Conclusion
+In this blog, we examined the powerful integration of Gen AI with BigQuery to enhance real-time data processing and analytics. We demonstrated how to democratize Gen AI use cases by implementing the entire solution using a low-code/no-code approach.
 
+By utilizing Continuous Queries in BigQuery alongside the Gemini model, our best-in-class Gen AI model, we just showcased how to seamlessly stream data from Pub/Sub to BigQuery and conduct sentiment analysis on incoming data. This integration allows operational applications to act on insights in real time, empowering end-users to make quick and informed decisions.
+
+This is just one use case; the possibilities are vast, and you can leverage these techniques to implement your specific use cases.
+
+By adopting these strategies, businesses can unlock the full potential of their data, transforming it into actionable insights that drive better outcomes.
 
 
 
