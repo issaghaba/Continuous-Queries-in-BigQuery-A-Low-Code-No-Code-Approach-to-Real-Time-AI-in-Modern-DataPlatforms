@@ -33,7 +33,7 @@ As of this writing, Continuous Queries is in preview.  Submit a [request form](h
 ### **Vertex AI** 
 **1. Activate Vertex AI:** Make sure the Vertex AI API is enabled in your Google Cloud project.<br/>
 **2. Create an external connection:** The external connection will be use to create the remote Vertex Ai model. 
-To create an external connection,in BigQuery Studio, next to the Explorer panel, click on Add.
+<br/>To create an external connection, in BigQuery Studio, next to the Explorer panel, click on Add.
 
 <img width="294" alt="image" src="https://github.com/user-attachments/assets/8a8090ed-5551-4a56-8f2f-59e5dc96d714">
 
@@ -41,7 +41,7 @@ To create an external connection,in BigQuery Studio, next to the Explorer panel,
 
 <img width="967" alt="image" src="https://github.com/user-attachments/assets/516cd433-cb72-4b61-bfd2-a3650c1411df">
 
-In the configuration window, choose Vertex AI remote models, remote functions, and BigLake (Cloud Resource).
+<br/>In the configuration window, choose Vertex AI remote models, remote functions, and BigLake (Cloud Resource).
 Enter a connection ID and select the location, ensuring it matches the location of your BigQuery dataset.
 Finally, click on the Create Connection button.
 
@@ -52,11 +52,11 @@ Finally, click on the Create Connection button.
 
    <img width="788" alt="image" src="https://github.com/user-attachments/assets/bd8541f7-2651-4a9b-a053-49ac8d38ad85">
    
-**4. Create a remote model for Gemini 1.0 Pro in BigQuery ML**
+**4. Create a Vertex AI remote model with the Gemini 1.0 Pro endpoint in BigQuery ML**
 
 ```sql
 
-CREATE OR REPLACE MODEL  `iba-demos-prj.ContinuousQueries.sentimentanalysis`
+CREATE OR REPLACE MODEL  `<your project id>.<your dataset>.sentimentanalysis`
 REMOTE WITH CONNECTION `us-central1.gemini-1-0-pro`
 OPTIONS (endpoint ='gemini-1.0-pro') 
 
@@ -73,7 +73,8 @@ Enter the dataset id, select your region and hit the create dataset button.
 <img width="310" alt="image" src="https://github.com/user-attachments/assets/7d77ec7d-90f4-477f-9a00-ef5506ec99e3">
 
 
-- use the below script to create the target table
+<br/> Use the below script to create the target table<br/>
+
 ```sql
 
 CREATE TABLE `<your project id>.<your dataset>.HotelReviewsCQ`
@@ -107,7 +108,6 @@ CREATE TABLE `<your project id>.<your dataset>.HotelReviewsCQ`
 
 ```
 
-
 **3. Create a Reservation:**
 Continuous Queries are only supported in certain BigQuery editions. Make sure you create the reservation in the same region as your BQ dataset.
 
@@ -135,26 +135,26 @@ Click on the reservation you just created and select assignments. Create an assi
 
 
 ### **Pub/Sub**
-Go to Pub/Sub and create a topic. While creating a topic, you can check the create a default subscription box.
+<br/> Navigate to Pub/Sub and create a new topic. During the topic creation process, you can select the option to create a default subscription.<br/>
 <img width="379" alt="image" src="https://github.com/user-attachments/assets/60d992dc-bfbe-49d3-b2ca-0f98f9696a73">
 
 
-Now that the setup is complete, we are going to start the data into pubsub.
+With the setup complete, we will now begin streaming the data into Pub/Sub
+
 
 ### Streaming data to Pub/Sub
 
-We'll use Kaggle's reviews dataset https://www.kaggle.com/datasets/ahmedabdulhamid/reviews-dataset. 
-There are multiple ways to stream data from a bigQuery table to PubSub. For the purpose of the demo and as we are talking about Continuous Queries, we'll use that feature to push the data in Pub/Sub.
-After you download the dataset, you can upload it to a Cloud Storage Account.
-We imported the data into a BigQuery table called HotelReviewsRaw.
+We'll be using Kaggle's reviews dataset, available at this [here](https://www.kaggle.com/datasets/ahmedabdulhamid/reviews-dataset).
 
+There are several methods to stream data from a BigQuery table to Pub/Sub. For this demo, and since we're focusing on Continuous Queries, we'll leverage that feature to push the data into Pub/Sub from BQ.
+<br/>After downloading the dataset, you can upload it to a Cloud Storage bucket. We have imported the dataset into a BigQuery table named HotelReviewsRaw.
 
-> **1. Enable the Continuous Query mode**
-Before executing the below query and send the messages to Pub/Sub, you will need to enable COntinuos Query. To do so, in BigQuery Studio, under the "More" option, select Continuous Query.
-
+**1. Enable the Continuous Query mode**
+Before executing the query to send messages to Pub/Sub, you'll need to enable Continuous Query. To do this, go to BigQuery Studio, click on the "More" option, and select Continuous Query. <br/>
 <img width="331" alt="image" src="https://github.com/user-attachments/assets/a3c4375f-9c5b-4d75-8f8c-56e4da8563fa">
 
-run the below query 
+<br/>Execute the below query in BigQuery studio.<br/>
+
 ```sql
 EXPORT DATA
   OPTIONS (
@@ -186,7 +186,7 @@ AS (
     
   )) AS message
 FROM
-  `iba-demos-prj.ContinuousQueries.HotelReviewsRaw` 
+  `<your project>.<your dataset>.HotelReviewsRaw` 
 
 );
 ```
@@ -208,7 +208,7 @@ Execute the below query in Continuous Query mode to output the analytics in a BQ
 
 ```sql
 
-insert into `iba-demos-prj.ContinuousQueries.HotelReviewsInsights`
+insert into `<your project id>.<your dataset>.HotelReviewsInsights`
 SELECT
     address ,
     categories ,
@@ -234,7 +234,7 @@ SELECT
     
 FROM
     ML.GENERATE_TEXT(
-      MODEL `iba-demos-prj.ContinuousQueries.sentimentanalysis`,
+      MODEL `<your project id>.<your dataset>.sentimentanalysis`,
       (
         SELECT
              address ,
@@ -260,7 +260,7 @@ FROM
                 'for each of the following reviews, say if it a positive, negative or neutral ', reviews_text
 
               ) AS prompt
-        FROM   `iba-demos-prj.ContinuousQueries.HotelReviewsCQ` 
+        FROM   `<your project id>.<your dataset>.HotelReviewsCQ` 
           where city ='Boston'
 
       ),
