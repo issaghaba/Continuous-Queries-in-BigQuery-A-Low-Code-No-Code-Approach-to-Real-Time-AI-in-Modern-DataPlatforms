@@ -135,9 +135,8 @@ Click on the reservation you just created and select assignments. Create an assi
 
 
 ### **Pub/Sub**
-<br/> Navigate to Pub/Sub and create a new topic. During the topic creation process, you can select the option to create a default subscription.<br/>
+Navigate to Pub/Sub and create a new topic. During the topic creation process, you can select the option to create a default subscription.<br/>
 <img width="379" alt="image" src="https://github.com/user-attachments/assets/60d992dc-bfbe-49d3-b2ca-0f98f9696a73">
-
 
 With the setup complete, we will now begin streaming the data into Pub/Sub
 
@@ -191,20 +190,18 @@ FROM
 );
 ```
 
-
-To run this query, you will need to specify a service account. To do, go in the query settings under more
+**Additional step:** Before running the query, ensure you specify the appropriate service account with the necessary permissions. You can do this in the Query Settings under the More options. Select the relevant service account to allow BigQuery to interact with Pub/Sub.
 
 <img width="324" alt="image" src="https://github.com/user-attachments/assets/2c2b350b-786f-4d48-949b-b725c488738b">
 
 Enter a service account that has at least BQ Editor role.
 <img width="316" alt="image" src="https://github.com/user-attachments/assets/eb7546b1-59bd-48b0-82ec-100f15caa2a3">
 
-As the query is running and sending the data in Pub/Sub, you can check that Pub/Sub is automatically streming the data in BigQuery. Note that no ETL job was implemented to load the data in BQ.
+As the query runs and sends data to Pub/Sub, you can observe that Pub/Sub is automatically streaming the data into BigQuery. It's important to highlight that no ETL job was required to load the data into BigQuery.
 
-### Applying Gen AI on data as it arrives in the BQ table
+### Text Generation Inference on data as it streams into the BigQuery table
 
-Now, we can start the query for for the sentiment analysis and leverage Gemini model and our Gen Ai capability.
-Execute the below query in Continuous Query mode to output the analytics in a BQ Query table. Not that you could send this result to a Pub/Sub, Bigtable or AlloyDb for operational systems to take actions based on the insights inreal time.
+We can now initiate the sentiment analysis query, using the Gemini model created earlier. Execute the following query in Continuous Query mode to output the analytics into a BigQuery table. Keep in mind that the results can also be streamed to Pub/Sub or Bigtable, enabling real-time consumption by operational applications and allowing end-users to take immediate action
 
 ```sql
 
@@ -261,7 +258,6 @@ FROM
 
               ) AS prompt
         FROM   `<your project id>.<your dataset>.HotelReviewsCQ` 
-          where city ='Boston'
 
       ),
       STRUCT(
