@@ -20,6 +20,7 @@ In this blog, we will work with Kaggle's Reviews Dataset and carry out the follo
 # Project Setup
 
 ## Prerequisites
+<img width="888" alt="image" src="https://github.com/user-attachments/assets/6913616b-ad23-46c8-aa0c-f18eb31d53af">
 
 ### Project Whitelisting:    
 During the preview phase, you need to submit this request form to have your project whitelisted for Continuous Queries.
@@ -88,7 +89,7 @@ OPTIONS (endpoint = 'gemini-pro-vision')
 
 
 > **3. Create a Reservation:**
-Continuous Queries are only supported in certain BigQuery editions.
+Continuous Queries are only supported in certain BigQuery editions. Make sure you create the reservation in the same region as your BQ dataset.
 
 
 To create a reservation in BQ, select Capacity Management under Administration
@@ -125,18 +126,60 @@ Now that the setup is complete, we are going to start the data into pubsub.
 We'll use Kaggle's reviews dataset https://www.kaggle.com/datasets/ahmedabdulhamid/reviews-dataset. 
 There are multiple ways to stream data from a bigQuery table to PubSub. For the purpose of the demo and as we are talking about Continuous Queries, we'll use that feature to push the data in Pub/Sub.
 After you download the dataset, you can upload it to a Cloud Storage Account.
-Using the console, you can create a BigQuery table by importing the csv file.
-To do so,  expand the <img width="14" alt="image" src="https://github.com/user-attachments/assets/fac9b262-bf33-4a2c-964b-51424b07f712">
- and select create table.
- <img width="300" alt="image" src="https://github.com/user-attachments/assets/6ffbb922-e2af-4d82-b5f4-14900f51a126">
-
-Fill out the form and click the create table button.
-
-<img width="244" alt="image" src="https://github.com/user-attachments/assets/1097b9ab-c278-4ef7-9611-f2cb10de1c5a">
+We imported the data into a BigQuery table called HotelReviewsRaw.
 
 
+> **1. Enable the Continuous Query mode**
+In BigQuery Studio, under the "More" option, select Continuous Query.
+
+<img width="331" alt="image" src="https://github.com/user-attachments/assets/a3c4375f-9c5b-4d75-8f8c-56e4da8563fa">
+
+run the below query 
+```sql
+EXPORT DATA
+  OPTIONS (
+    format = 'CLOUD_PUBSUB',
+    uri = 'https://pubsub.googleapis.com/projects/iba-demos-prj/topics/ibarealtimedataingestion')
+AS (
+  SELECT
+ TO_JSON_STRING(
+      STRUCT(
+        address ,
+        categories ,
+        city ,
+        country ,
+        latitude ,
+        longitude ,
+        name ,
+        postalCode ,
+        province ,
+        reviews_date ,
+        reviews_dateAdded ,
+        reviews_doRecommend ,
+        reviews_id ,
+        reviews_rating ,
+        reviews_text ,
+        reviews_title ,
+        reviews_userCity ,
+        reviews_username ,
+        reviews_userProvince 
+    
+  )) AS message
+FROM
+  `iba-demos-prj.ContinuousQueries.HotelReviewsRaw` 
+
+);
+```
 
 
+To run thia query, you will need to specify a service account. To do, go in the query settings under more
+
+<img width="324" alt="image" src="https://github.com/user-attachments/assets/2c2b350b-786f-4d48-949b-b725c488738b">
+
+Enter a service account that has at least BQ Editor role.
+<img width="316" alt="image" src="https://github.com/user-attachments/assets/eb7546b1-59bd-48b0-82ec-100f15caa2a3">
+
+### Applying Gen AI on data as it arrives in the BQ table
 
 ### Service Account Setup:
 You'll need a service account to run the job. Follow this guide to choose the appropriate account type.
