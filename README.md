@@ -5,7 +5,8 @@ The goal is to demonstrate how to implement a complete end-to-end solution with 
 Below is the architecture we will be implementing.
 
 
-<img width="938" alt="image" src="https://github.com/user-attachments/assets/8891a9fa-a46c-4146-8045-738e751a0c81">
+<img width="974" alt="image" src="https://github.com/user-attachments/assets/839b97e1-9322-4542-8ccf-a64df4cb750f">
+
 
 In this blog, we will work with Kaggle's Reviews Dataset and carry out the following:
 
