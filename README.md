@@ -255,8 +255,7 @@ FROM
             reviews_username ,
             reviews_userProvince  ,
               CONCAT(
-                'for each of the following reviews, say if it a positive, negative or neutral ', reviews_text
-
+                "For each of the following customer reviews, classify the sentiment as positive, negative, or neutral. If the sentiment is negative, provide a recommendation on how to address the customer's concerns.", reviews_text
               ) AS prompt
         FROM   `<your project id>.<your dataset>.HotelReviewsCQ` 
 
